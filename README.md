@@ -101,5 +101,3 @@ A API utiliza o MySQL como banco de dados. Para configurá-lo, siga os passos ab
 3. O Hibernate criará automaticamente as tabelas no banco de dados com base nas entidades da aplicação.
 
 4. Certifique-se de que o MySQL esteja rodando e acessível.
-
-```
