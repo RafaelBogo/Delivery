@@ -49,14 +49,28 @@ Esta é uma API Rest desenvolvida com Java e Spring Boot para um sistema de deli
   "nome": "Bebidas"
 }
 ```
+### 5. Criar Produto
+- **Rota:** POST `http://localhost:8080/api/produtos`
+- **Headers:**
+  - **Token:** <token obtido no login>
+- **Body (JSON):**
+```json
+  {
+  "nome": "Coca-Cola",
+  "preco": 5.50,
+  "categoria": {
+    "id": 1
+  }
+}
+```
 
-### 5. Listar Produtos
+### 6. Listar Produtos
 
 - **Rota**: `GET http://localhost:8080/api/produtos`
 - **Headers**:
   - **Token**: `<token obtido no login>`
 
-### 6. Criar Pedido
+### 7. Criar Pedido
 
 - **Rota**: `POST http://localhost:8080/api/pedidos`
 - **Headers**:
@@ -65,9 +79,13 @@ Esta é uma API Rest desenvolvida com Java e Spring Boot para um sistema de deli
 
 ```json
 {
-  "produtos": [1, 2],
+  "produtos": [
+    { "id": 1 }, 
+    { "id": 2 }
+  ],
   "endereco": "Rua Exemplo, 123"
 }
+
 ```
 
 ## Observações
