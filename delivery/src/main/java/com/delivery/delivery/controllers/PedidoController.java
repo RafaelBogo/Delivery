@@ -26,14 +26,24 @@ public class PedidoController {
     private ProdutoRepository produtoRepository;
 
     @PostMapping
-    public ResponseEntity<Pedido> criarPedido(@RequestBody Pedido pedido) {
+public ResponseEntity<?> criarPedido(@RequestBody Pedido pedido) {
+    try {
+        if (pedido.getEnderecoEntrega() == null || pedido.getEnderecoEntrega().isEmpty()) {
+            return ResponseEntity.badRequest().body("Endereço de entrega é obrigatório.");
+        }
+
         Usuario usuario = usuarioRepository.findById(pedido.getUsuario().getId()).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
         List<Produto> produtos = produtoRepository.findAllById(pedido.getProdutos().stream().map(Produto::getId).toList());
+
         pedido.setUsuario(usuario);
         pedido.setProdutos(produtos);
         Pedido novoPedido = pedidoRepository.save(pedido);
+
         return ResponseEntity.ok(novoPedido);
+    } catch (Exception e) {
+        return ResponseEntity.status(500).body("Erro ao criar o pedido: " + e.getMessage());
     }
+}
 
     @GetMapping
     public ResponseEntity<List<Pedido>> listarPedidos() {
@@ -43,7 +53,8 @@ public class PedidoController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Pedido> obterPedido(@PathVariable Long id) {
-        Pedido pedido = pedidoRepository.findById(id).orElseThrow(() -> new RuntimeException("Pedido não encontrado"));
+        Pedido pedido = pedidoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Pedido não encontrado"));
         return ResponseEntity.ok(pedido);
     }
 }

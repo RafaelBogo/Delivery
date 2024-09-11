@@ -22,8 +22,8 @@ public class SecurityConfig {
         return http
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/usuarios/cadastro", "/api/usuarios/login").permitAll() // Libera rotas de cadastro e login
-                .anyRequest().authenticated()// Protege as outras rotas
+                .requestMatchers("/api/usuarios/cadastro", "/api/usuarios/login").permitAll()
+                .anyRequest().authenticated()
             )
             .addFilterBefore(filtroToken, UsernamePasswordAuthenticationFilter.class)// Add o filtro de token
             .build();

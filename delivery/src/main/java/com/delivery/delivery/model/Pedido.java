@@ -31,6 +31,6 @@ public class Pedido {
     )
     private List<Produto> produtos;
 
-    @Column(nullable = false)
+    @Column(name = "endereco_entrega", nullable = false)
     private String enderecoEntrega;
 }

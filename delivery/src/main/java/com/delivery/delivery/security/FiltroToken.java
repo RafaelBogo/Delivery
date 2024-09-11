@@ -34,7 +34,6 @@ public class FiltroToken extends OncePerRequestFilter {
         }
 
         var authenticationHeader = request.getHeader("Token");
-
         if (authenticationHeader != null) {
             Optional<Usuario> usuario = usuarioRepository.findByChave(authenticationHeader);
 
@@ -49,7 +48,7 @@ public class FiltroToken extends OncePerRequestFilter {
             response.setStatus(HttpStatus.FORBIDDEN.value());
             return;
         }
-
+        
         filterChain.doFilter(request, response);
     }
 }
