@@ -80,18 +80,17 @@ Esta é uma API Rest desenvolvida com Java e Spring Boot para um sistema de deli
 ```json
 {
   "produtos": [
-    { "id": 1 }, 
-    { "id": 2 }
+    { "id": 1 }
   ],
   "endereco": "Rua Exemplo, 123"
 }
 
 ```
+### 8. Listar Pedidos
 
-## Observações
-
-- **Token**: Lembre-se de usar o token obtido no login nas rotas protegidas (envie no header `Token`).
-- **403 Forbidden**: Certifique-se de incluir o token correto para evitar esse erro.
+- **Rota:** `GET http://localhost:8080/api/pedidos`
+- **Headers:**
+  - **Token:** `<token obtido no login>`
 
 ## Configuração do Banco de Dados
 
